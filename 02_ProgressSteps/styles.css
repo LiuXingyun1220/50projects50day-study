@@ -1,0 +1,107 @@
+:root {
+  --line-border-fill: #3498db;
+  --line-border-empty: #383838;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+}
+
+.progress-container::before {
+  content: '';
+  background-color: var(--line-border-empty);
+  /* 使用CSS变量设置背景颜色，表示未填充部分 */
+  position: absolute;
+  /* 使伪元素绝对定位，相对于容器定位 */
+  top: 50%;
+  /* 将伪元素定位到容器垂直中心 */
+  left: 0;
+  /* 将伪元素定位到容器的左侧 */
+  transform: translateY(-50%);
+  /* 将伪元素的垂直位置向上平移50%，居中显示 */
+  height: 4px;
+  /* 设置伪元素的高度为4px，表示背景条的厚度 */
+  width: 100%;
+  /* 设置伪元素的宽度为容器的宽度，以覆盖整个进度条背景 */
+  z-index: -1;
+  /* 将伪元素置于容器后面，以便其他内容位于伪元素前面 */
+}
+
+.progress {
+  background-color: var(--line-border-fill);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 0%;
+  z-index: -1;
+  transition: 0.4s ease;
+}
+
+.circle {
+  background-color: #f1f1f1;
+  color: gray;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+  transition: 0.4s ease;
+}
+
+.circle.active {
+  border-color: var(--line-border-fill);
+}
+
+.btn {
+  background-color: var(--line-border-fill);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 8px 30px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus {
+  outline: 0;
+}
+
+.btn:disabled {
+  background-color: var(--line-border-empty);
+  cursor: not-allowed;
+}
